@@ -24,10 +24,12 @@
     --pri_color: orangered;
     --sec_color: rgb(251, 234, 224);
 }
-.container{
+
+.container {
     position: relative;
 }
-#alert{
+
+#alert {
     width: 25%;
     top: 0;
     left: 37%;
@@ -39,13 +41,15 @@
     color: white;
     z-index: 22;
 }
-#alert_int{
-   position: absolute;
-   right: 12px;
-   top: 12px;
-   z-index: 23;
+
+#alert_int {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 23;
 }
-#popup{
+
+#popup {
     position: absolute;
     top: -100px;
     left: 0;
@@ -53,6 +57,7 @@
     padding-bottom: 43px;
     z-index: 5;
 }
+
 #form_one {
     background-color: var(--sec_color);
     width: 33%;
@@ -67,11 +72,22 @@
     margin-top: 70px;
     position: relative;
 }
-#notify{
+
+#notify {
     display: block;
     text-align: center;
     margin-top: 5px;
     font-size: .7rem;
+}
+
+.data #live_img {
+    border-radius: 3px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9;
+    width: 70px;
+    height: 70px;
 }
 
 #int {
@@ -81,7 +97,7 @@
     height: 15px;
     text-align: center;
     border-radius: 50%;
-
+    cursor: pointer;
 }
 
 #int_mark {
@@ -132,6 +148,7 @@
     border-radius: 5px;
     display: block;
     margin: auto;
+    cursor: pointer;
 }
 
 /* list */
@@ -155,31 +172,42 @@
     box-shadow: 5px 5px 8px brown;
     background-image: linear-gradient(to right, rgb(254, 161, 127)20%, orangered 80%, red);
 }
+
 nav {
     display: flex;
-    padding-top:8px;
+    padding-top: 8px;
     font-size: 1.4em;
 }
-nav #sticker{
+
+nav #sticker {
     width: 80%;
     font-family: poppins;
     text-align: center;
 }
-nav #student_ic, #add_ic{
+
+nav #student_ic,
+#add_ic {
     width: 10%;
     text-align: center;
 
 }
-#sticker:hover{
-    color:var(--sec_color);
+#add_ic {
+    cursor: pointer;
 }
-#student_ic:hover,#add_ic:hover{
+
+#sticker:hover {
+    color: var(--sec_color);
+}
+
+#student_ic:hover,
+#add_ic:hover {
     /* color:rgb(107, 0, 0); */
-    color:var(--sec_color);
+    color: var(--sec_color);
 }
+
 #table {
     padding: 50px;
-    
+
 }
 
 #table table {
@@ -202,17 +230,55 @@ nav #student_ic, #add_ic{
     border-bottom: 3px solid rgb(255, 138, 95);
     padding: 10px 20px;
     font-family: poppins_semibold;
-   
+
 }
-.edit{
-    color:rgb(0, 104, 195);
-    
+
+.edit {
+    color: rgb(0, 104, 195);
+    cursor: pointer;
 }
-.delete{
-    color:rgb(216, 0, 0);
-    
+
+.delete {
+    color: rgb(216, 0, 0);
+    cursor: pointer;
 }
-.preview{
-    color:rgb(21, 190, 139);
-    
+
+.download {
+    color: rgb(21, 190, 139);
+    cursor: pointer;
+
+}
+
+#pdf_table {
+    width: 80%;
+    margin: auto;
+    padding: 100px 0px;
+
+}
+
+#pdf th {
+    border: 2px solid var(--pri_color);
+    font-family: poppins;
+}
+
+#pdf td {
+    border: 2px solid var(--pri_color);
+    font-family: poppins_semibold;
+    width: 50%;
+}
+
+#pdf {
+    border: 2px solid var(--pri_color);
+    background-color: var(--sec_color);
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 2.0em;
+    /* font-weight: 700; */
+    width: 80%;
+    margin: auto;
+}
+
+#student_photo {
+    display: block;
+    margin: 15px auto;
 }

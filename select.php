@@ -7,7 +7,7 @@ echo ' <tr>
           <th>AAAA</th>
           <th>EDIT</th>
           <th>DELETE</th>
-          <th>PREVIEW</th>
+          <th>DOWNLOAD</th>
       </tr>';
 include('db.php');
 $select ="SELECT * FROM `student`";
@@ -17,10 +17,10 @@ while($row = $result->fetch_assoc()){
              <td style="color:black">'.$row['id'].'</td>
              <td>'.$row['name'].'</td>
              <td style="color:black">'.$row['college'].'</td>
-             <td><img src="'.$row['college'].'" width="70" height="70" style="border-radius:5px;"/></td>
+             <td><img id="table_img" src="'.$row['image'].'" width="70" height="70" style="border-radius:3px;display:block;margin:auto"/></td>
              <td data-id="'.$row['id'].'" class="edit">EDIT</td>
              <td data-id="'.$row['id'].'" class="delete">DELETE</td>
-             <td data-id="'.$row['id'].'" class="preview">PREVIEW</td>
+             <td data-id="'.$row['id'].'" class="download"><i class="fa-solid fa-download"></i></td>
           </tr>';
 }
 ?>
