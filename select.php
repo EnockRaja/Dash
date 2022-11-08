@@ -8,11 +8,13 @@ echo ' <tr>
           <th>EDIT</th>
           <th>DELETE</th>
           <th>DOWNLOAD</th>
+          <th>PRINT</th>
       </tr>';
 include('db.php');
 $select ="SELECT * FROM `student`";
 $result = $connect->query($select);
 while($row = $result->fetch_assoc()){
+
     echo ' <tr id="'.$row['id'].'">
              <td style="color:black">'.$row['id'].'</td>
              <td>'.$row['name'].'</td>
@@ -21,6 +23,7 @@ while($row = $result->fetch_assoc()){
              <td data-id="'.$row['id'].'" class="edit">EDIT</td>
              <td data-id="'.$row['id'].'" class="delete">DELETE</td>
              <td data-id="'.$row['id'].'" class="download"><i class="fa-solid fa-download"></i></td>
+             <td data-id="'.$row['id'].'" class="print"><i class="fa-solid fa-download"></i></td>
           </tr>';
 }
 ?>

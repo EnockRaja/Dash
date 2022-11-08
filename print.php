@@ -1,6 +1,5 @@
-<?php
-include 'db.php';
-// print_r($_POST);
+<?php 
+include('db.php');
 
 extract($_POST);
 

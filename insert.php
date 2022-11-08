@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+require('db.php');
 if (!empty($_POST['fname']) && !empty($_POST['collegename'])) {
 
     extract($_POST);

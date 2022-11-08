@@ -19,7 +19,7 @@
             <div id="alert_msg"></div>
         </div>
         <div id="popup" style="display:none">
-            <form action="" method="post" id="form_one">
+            <form action="" method="post" id="form_a">
                 <div class="data" style="margin-top:0px;">
                     <span id="int"><i class="fa-solid fa-circle-xmark" style="padding:none;" id="int_mark"></i></span>
                     <label for="name" class="laps">Name</label>
@@ -81,24 +81,49 @@
                 </tr>
             </table>
         </div>
+        <div id="printer" style="display:none;">
+
+                
+                <table id="print" border="1" style="border:1px solid orangered;margin:auto;width:50%;border-collapse:collapse;">
+                <tr>
+                    <th colspan="2" style="padding:10px;text-align:center;">STUDENT DETAILS</th>
+                </tr>
+                <tr>
+                    <td style="padding:10px;text-align:center;">ID</td>
+                    <td id="print_id" style="padding:10px;text-align:center;"></td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;text-align:center;">NAME</td>
+                    <td id="print_name" style="padding:10px;text-align:center;"></td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;text-align:center;">COLLEGE</td>
+                    <td id="print_college" style="padding:10px;text-align:center;"></td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;text-align:center;">PHOTO</td>
+                    <td style="padding:10px;text-align:center;border-radius:5px;"> <img id="print_image" src="" alt="" width="70" height="70"> </td>
+                </tr>
+            </table>
+
+        </div>
     </div>
     <!-- <script src="code.js"></script> -->
     <!-- <script src="html2pdf.bundle.min.js"></script> -->
     <script>
         $(document).ready(function() {
 
-
-
             getData();
+
             $("#int_mark").click(function() {
                 $("#popup").fadeOut(200);
-                $("#form_one")[0].reset();
+                $("#form_a")[0].reset();
                 // $("#submit").val("Add");
             });
             $("#add_ic").click(function() {
                 $("#popup").fadeIn(500);
                 $("#popup").css("backgroundColor", "grey");
-                $("#live_img").attr("src","");
+                $("#live_img").attr("src", "");
                 $("#submit").val("Add");
                 $("#submit").html("Add");
                 $("#notify").hide();
@@ -129,20 +154,16 @@
 
 
             // insert-start
-            $("#form_one").on("submit", function(e) {
+            $("#form_a").on("submit", function(e) {
                 e.preventDefault();
                 var datas = new FormData(this);
-                // datas.append("",a);
-                // let a = $("#live_img").attr('src');
-                // console.log(a);
                 let checky = $("#submit").val();
                 var filePath;
                 if (checky != "Upload") {
                     filePath = "insert.php";
-                    // $("#live_img").attr("src", "");
                 } else {
                     filePath = "update.php";
-                    
+
                 }
                 $.ajax({
                     url: filePath,
@@ -155,11 +176,10 @@
                         console.log(data);
                         if (data) {
                             $("#popup").fadeOut(300);
-                            $("#form_one")[0].reset();
+                            $("#form_a")[0].reset();
                             $("#alert_msg").html(data);
                             $("#alert").slideDown(500);
                             $("#submit").val("");
-                            //
                             getData();
                         }
 
@@ -248,7 +268,7 @@
                     },
                     success: function(data) {
                         let got_data = JSON.parse(data);
-                        // console.log(data);
+                        console.log(data);
                         $("#student_id").html(got_data.id);
                         $("#student_name").html(got_data.name);
                         $("#student_college").html(got_data.college);
@@ -258,10 +278,42 @@
                 });
             });
 
+
             function generatePdf() {
                 let content = document.getElementById("pdf_table").innerHTML;
                 html2pdf().from(content).save();
             }
+
+            $("#projector").on("click", ".print", function() {
+                var id = $(this).data("id");
+
+                $.ajax({
+                    url: "print.php",
+                    type: "POST",
+                    data: {
+                        id: id
+                    },
+                    success: function(data) {
+
+                        var response = JSON.parse(data);
+                        console.log(response);
+                        $("#print_id").html(response.id);
+                        $("#print_name").html(response.name);
+                        $("#print_college").html(response.college);
+                        $("#print_image").attr("src", response.image);
+                        printData();
+                    }
+                });
+            });
+
+            function printData() {
+                var divToPrint = document.getElementById("print");
+                newWin = window.open("");
+                newWin.document.write(divToPrint.outerHTML);
+                newWin.print();
+                newWin.close();
+            }
+
         });
     </script>
 </body>
